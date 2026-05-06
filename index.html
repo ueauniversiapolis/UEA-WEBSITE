@@ -1,160 +1,238 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UEA Universiapolis</title>
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Tailwind Configuration -->
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              africa: {
-                green: '#1B5E20',
-                gold: '#D4AF37',
-                dark: '#0F172A'
-              }
-            }
-          }
-        }
-      }
-    </script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Custom Styles -->
+    <title>UEA Universiapolis | Union des Étudiants Africains</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-      body {
-        font-family: 'Poppins', sans-serif;
-      }
-      .hero {
-        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-          url('https://images.unsplash.com/photo-1509099836639-18ba1795216d');
-        background-size: cover;
-        background-position: center;
-      }
+        :root {
+            --primary: #2c3e50;
+            --accent: #e67e22; 
+            --secondary: #27ae60;
+            --light: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            color: #333;
+            background-color: var(--light);
+        }
+
+        /* Header & Hero */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
+        
+        h2.section-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 3px solid var(--accent);
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 10px;
+        }
+
+        /* Bureau Section */
+        .bureau-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .member-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent);
+        }
+
+        .member-card h3 { margin: 10px 0 5px 0; color: var(--primary); font-size: 1.1rem; }
+        .member-card p { margin: 0; color: #666; font-size: 0.9rem; font-weight: bold; }
+        .member-card .promo { color: var(--secondary); font-style: italic; }
+
+        /* Activities Section */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .activity-content { padding: 20px; }
+        .date-badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* Upcoming Event */
+        .upcoming {
+            background: var(--primary);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        /* Footer & Contact */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #1a252f;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 2rem;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover { color: var(--accent); }
+
+        .contact-info { margin-top: 20px; font-size: 1.1rem; }
     </style>
-  </head>
+</head>
+<body>
 
-<body class="bg-gray-50">
+    <header>
+        <h1>Union des Étudiants Africains</h1>
+        <p style="font-size: 1.3rem;">Universiapolis Agadir</p>
+        <p style="max-width: 700px; margin: 20px auto;">Promouvoir la culture africaine et l’unité des étudiants de toutes nationalités à travers la solidarité et l'excellence.</p>
+    </header>
 
-<!-- NAV -->
-<nav class="bg-white shadow fixed w-full z-50">
-<div class="max-w-7xl mx-auto flex justify-between items-center px-6 h-16">
-<h1 class="font-bold text-xl text-africa-green">UEA</h1>
+    <div class="container">
+        
+        <h2 class="section-title">Le Bureau Exécutif</h2>
+        <div class="bureau-grid">
+            <div class="member-card">
+                <h3>Gilles IMMONGAULT</h3>
+                <p>Président</p>
+                <span class="promo">Master Logistique & Commerce Int.</span>
+            </div>
+            <div class="member-card">
+                <h3>Chahd Mechino</h3>
+                <p>Vice-Présidente</p>
+                <span class="promo">2ème année Ingénierie</span>
+            </div>
+            <div class="member-card">
+                <h3>Coulibaly Ibrahim</h3>
+                <p>Secrétaire Général</p>
+                <span class="promo">2ème année Ingénierie</span>
+            </div>
+            <div class="member-card">
+                <h3>Dylane Ngomo</h3>
+                <p>Porte-Parole</p>
+                <span class="promo">3ème année Génie Alimentaire</span>
+            </div>
+            <div class="member-card">
+                <h3>Abdul Karim. M</h3>
+                <p>Responsable Informatique</p>
+                <span class="promo">4ème année Génie Informatique</span>
+            </div>
+            <div class="member-card">
+                <h3>Judes Paul Mayombo</h3>
+                <p>Responsable Communication</p>
+                <span class="promo">4ème année Génie Civil</span>
+            </div>
+            <div class="member-card">
+                <h3>Yacine Ouedraogo</h3>
+                <p>Trésorier</p>
+                <span class="promo">4ème année Génie Civil</span>
+            </div>
+            <div class="member-card">
+                <h3>N'fally Koné</h3>
+                <p>Responsable Sportif</p>
+                <span class="promo">3ème année Finance</span>
+            </div>
+            <div class="member-card">
+                <h3>Dimitri Dipama</h3>
+                <p>Responsable Événementiel</p>
+                <span class="promo">4ème année Génie Informatique</span>
+            </div>
+        </div>
 
-<div class="hidden md:flex space-x-6">
-<a href="#home">Accueil</a>
-<a href="#about">À propos</a>
-<a href="#events">Événements</a>
-<a href="#team">Bureau</a>
-<a href="#contact">Contact</a>
-</div>
-</div>
-</nav>
+        <h2 class="section-title">Nos Activités Réalisées</h2>
+        <div class="timeline">
+            <div class="activity-card">
+                <div class="activity-content">
+                    <span class="date-badge">28 Décembre 2024</span>
+                    <h3>The Last Dance 2</h3>
+                    <p>Une soirée dansante mémorable ayant rassemblé plus de <strong>320 étudiants</strong> pour célébrer la fin d'année.</p>
+                </div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-content">
+                    <span class="date-badge">19 Mars - 22 Avril 2025</span>
+                    <h3>All Star Game</h3>
+                    <p>Tournoi de football majeur : 10 équipes, 120 joueurs issus des 5 écoles. Félicitations au vainqueur : <strong>Infinite FC</strong>.</p>
+                </div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-content">
+                    <span class="date-badge">Mai 2025</span>
+                    <h3>Projection Clasico</h3>
+                    <p>Diffusion du grand match de football pour un moment de partage sportif intense.</p>
+                </div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-content">
+                    <span class="date-badge">Novembre 2025</span>
+                    <h3>Halloween Party</h3>
+                    <p>Projection de film d'horreur et soirée déguisée ayant réuni plus de 90 participants.</p>
+                </div>
+            </div>
+        </div>
 
-<!-- HERO -->
-<section id="home" class="hero h-screen flex items-center justify-center text-white text-center">
-<div>
-<h1 class="text-5xl font-bold mb-4">Union Étudiante Africaine</h1>
-<p class="text-xl mb-6">Universiapolis - Agadir</p>
-<a href="#join" class="bg-africa-gold text-black px-6 py-3 rounded-full font-semibold">
-S'inscrire maintenant
-</a>
-</div>
-</section>
+        <div class="upcoming">
+            <span style="text-transform: uppercase; font-weight: bold; color: var(--accent);">Événement phare à venir</span>
+            <h2 style="font-size: 2.5rem; margin: 10px 0;">UNI CULTURE - Juin 2026</h2>
+            <p>Une journée exceptionnelle de rassemblement autour de la culture, des traditions et des produits du terroir de chaque communauté présente à l'université.</p>
+        </div>
 
-<!-- ABOUT -->
-<section id="about" class="py-20 text-center max-w-4xl mx-auto">
-<h2 class="text-3xl font-bold text-africa-green mb-6">À propos</h2>
-<p>
-L’UEA est une organisation qui rassemble les étudiants africains autour de valeurs de solidarité,
-de leadership et d’excellence.
-</p>
-</section>
+    </div>
 
-<!-- EVENTS -->
-<section id="events" class="py-20 bg-white text-center">
-<h2 class="text-3xl font-bold text-africa-green mb-10">Événements à venir</h2>
-
-<div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-
-<div class="shadow rounded p-4">
-<img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455">
-<h3 class="font-bold mt-3">Festival Culturel Africain</h3>
-<p>Mai 2026</p>
-</div>
-
-<div class="shadow rounded p-4">
-<img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302a">
-<h3 class="font-bold mt-3">Conférence Leadership</h3>
-<p>Juin 2026</p>
-</div>
-
-<div class="shadow rounded p-4">
-<img src="https://images.unsplash.com/photo-1503428593586-e225b39bddfe">
-<h3 class="font-bold mt-3">Journée d'intégration</h3>
-<p>Septembre 2026</p>
-</div>
-
-</div>
-</section>
-
-<!-- TEAM -->
-<section id="team" class="py-20 text-center">
-<h2 class="text-3xl font-bold text-africa-green mb-10">Le Bureau</h2>
-
-<div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-
-<div class="bg-white shadow rounded p-6">
-<img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-4">
-<h3 class="font-bold">Président</h3>
-<p>Gilles Immongault</p>
-</div>
-
-<div class="bg-white shadow rounded p-6">
-<img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-4">
-<h3 class="font-bold">Secrétaire Général</h3>
-<p>Nom Prénom</p>
-</div>
-
-<div class="bg-white shadow rounded p-6">
-<img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-4">
-<h3 class="font-bold">Communication</h3>
-<p>Nom Prénom</p>
-</div>
-
-</div>
-</section>
-
-<!-- JOIN FORM -->
-<section id="join" class="py-20 bg-white text-center">
-<h2 class="text-3xl font-bold text-africa-green mb-6">Inscription</h2>
-
-<p class="mb-6">Rejoins officiellement l’UEA via ce formulaire :</p>
-
-<iframe src="https://docs.google.com/forms/d/e/TON_FORM_ID/viewform?embedded=true"
-width="100%" height="600">
-</iframe>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="py-20 text-center">
-<h2 class="text-3xl font-bold text-africa-green mb-6">Contact</h2>
-<p>Email : uea@universiapolis.ma</p>
-<p>WhatsApp : +212XXXXXXXXX</p>
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-africa-green text-white text-center py-6">
-<p>© 2026 UEA Universiapolis | Officiel</p>
-</footer>
+    <footer>
+        <h2>Contactez l'UEA</h2>
+        <div class="social-links">
+            <a href="https://www.instagram.com/ueauniversiapolis?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> ueauniversiapolis@gmail.com</p>
+            <p><i class="fas fa-phone"></i> +212 781 688 850</p>
+        </div>
+        <p style="margin-top: 40px; opacity: 0.6;">&copy; 2024-2026 UEA Universiapolis - Designed for Excellence</p>
+    </footer>
 
 </body>
 </html>
