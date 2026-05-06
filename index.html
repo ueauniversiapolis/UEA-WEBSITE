@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UEA Universiapolis</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              africa: {
+                green: '#1B5E20',
+                gold: '#D4AF37',
+                dark: '#0F172A'
+              }
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+      }
+      .hero {
+        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+          url('https://images.unsplash.com/photo-1509099836639-18ba1795216d');
+        background-size: cover;
+        background-position: center;
+      }
+    </style>
+  </head>
+
+<body class="bg-gray-50">
+
+<!-- NAV -->
+<nav class="bg-white shadow fixed w-full z-50">
+<div class="max-w-7xl mx-auto flex justify-between items-center px-6 h-16">
+<h1 class="font-bold text-xl text-africa-green">UEA</h1>
+
+<div class="hidden md:flex space-x-6">
+<a href="#home">Accueil</a>
+<a href="#about">À propos</a>
+<a href="#events">Événements</a>
+<a href="#team">Bureau</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero h-screen flex items-center justify-center text-white text-center">
+<div>
+<h1 class="text-5xl font-bold mb-4">Union Étudiante Africaine</h1>
+<p class="text-xl mb-6">Universiapolis - Agadir</p>
+<a href="#join" class="bg-africa-gold text-black px-6 py-3 rounded-full font-semibold">
+S'inscrire maintenant
+</a>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-20 text-center max-w-4xl mx-auto">
+<h2 class="text-3xl font-bold text-africa-green mb-6">À propos</h2>
+<p>
+L’UEA est une organisation qui rassemble les étudiants africains autour de valeurs de solidarité,
+de leadership et d’excellence.
+</p>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="py-20 bg-white text-center">
+<h2 class="text-3xl font-bold text-africa-green mb-10">Événements à venir</h2>
+
+<div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+<div class="shadow rounded p-4">
+<img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455">
+<h3 class="font-bold mt-3">Festival Culturel Africain</h3>
+<p>Mai 2026</p>
+</div>
+
+<div class="shadow rounded p-4">
+<img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302a">
+<h3 class="font-bold mt-3">Conférence Leadership</h3>
+<p>Juin 2026</p>
+</div>
+
+<div class="shadow rounded p-4">
+<img src="https://images.unsplash.com/photo-1503428593586-e225b39bddfe">
+<h3 class="font-bold mt-3">Journée d'intégration</h3>
+<p>Septembre 2026</p>
+</div>
+
+</div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="py-20 text-center">
+<h2 class="text-3xl font-bold text-africa-green mb-10">Le Bureau</h2>
+
+<div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+<div class="bg-white shadow rounded p-6">
+<img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-4">
+<h3 class="font-bold">Président</h3>
+<p>Gilles Immongault</p>
+</div>
+
+<div class="bg-white shadow rounded p-6">
+<img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-4">
+<h3 class="font-bold">Secrétaire Général</h3>
+<p>Nom Prénom</p>
+</div>
+
+<div class="bg-white shadow rounded p-6">
+<img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-4">
+<h3 class="font-bold">Communication</h3>
+<p>Nom Prénom</p>
+</div>
+
+</div>
+</section>
+
+<!-- JOIN FORM -->
+<section id="join" class="py-20 bg-white text-center">
+<h2 class="text-3xl font-bold text-africa-green mb-6">Inscription</h2>
+
+<p class="mb-6">Rejoins officiellement l’UEA via ce formulaire :</p>
+
+<iframe src="https://docs.google.com/forms/d/e/TON_FORM_ID/viewform?embedded=true"
+width="100%" height="600">
+</iframe>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-20 text-center">
+<h2 class="text-3xl font-bold text-africa-green mb-6">Contact</h2>
+<p>Email : uea@universiapolis.ma</p>
+<p>WhatsApp : +212XXXXXXXXX</p>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-africa-green text-white text-center py-6">
+<p>© 2026 UEA Universiapolis | Officiel</p>
+</footer>
+
+</body>
+</html>
