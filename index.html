@@ -9,55 +9,57 @@
     <style>
         :root { 
             --uea-rose: #f472b6; 
-            --uea-rose-light: #fbcfe8;
-            --uea-black: #000000;
+            --uea-rose-dark: #db2777;
+            --uea-bg: #ffffff;
+            --uea-text: #1f2937;
         }
-        body { background-color: var(--uea-black); color: white; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--uea-bg); color: var(--uea-text); font-family: 'Inter', sans-serif; }
         
-        /* Style des boutons et éléments actifs */
         .nav-active { color: var(--uea-rose) !important; border-bottom: 3px solid var(--uea-rose); }
         .pink-gradient { background: linear-gradient(135deg, #f472b6 0%, #db2777 100%); }
         .text-pink { color: var(--uea-rose); }
 
-        /* Cartes Activités */
+        /* Cartes Activités version Rose & Blanc */
         .activity-container {
             transition: all 0.4s ease;
-            border: 2px solid #333;
-            border-radius: 20px;
+            border: 1px solid #fce7f3;
+            background: white;
+            border-radius: 24px;
             overflow: hidden;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         .activity-container:hover {
             border-color: var(--uea-rose);
-            transform: scale(1.02);
-            box-shadow: 0 0 30px rgba(244, 114, 182, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(244, 114, 182, 0.2);
         }
 
-        /* Système de Page de Détails (Modale) */
+        /* Modale de détails */
         #detail-view {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--uea-black); z-index: 9999; overflow-y: auto;
+            background: white; z-index: 9999; overflow-y: auto;
         }
         .back-btn {
             position: fixed; top: 20px; left: 20px; z-index: 10000;
-            background: var(--uea-rose); color: white; padding: 12px 24px;
+            background: var(--uea-text); color: white; padding: 12px 24px;
             border-radius: 50px; font-weight: bold; cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <nav class="bg-black border-b border-pink-900 sticky top-0 z-50">
+    <nav class="bg-white/80 backdrop-blur-md border-b border-pink-100 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="navigate('accueil')">
                 <img src="1000537935.png" class="w-12 h-12 rounded-full border-2 border-pink-400">
                 <span class="text-2xl font-black tracking-tighter uppercase italic">UEA <span class="text-pink">UNI</span></span>
             </div>
             <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
-                <button onclick="navigate('accueil')" id="nav-accueil" class="hover:text-pink-400">Accueil</button>
-                <button onclick="navigate('bureau')" id="nav-bureau" class="hover:text-pink-400">Le Bureau</button>
-                <button onclick="navigate('activites')" id="nav-activites" class="hover:text-pink-400">Activités</button>
-                <button onclick="navigate('about')" id="nav-about" class="hover:text-pink-400">Contact</button>
+                <button onclick="navigate('accueil')" id="nav-accueil" class="hover:text-pink">Accueil</button>
+                <button onclick="navigate('bureau')" id="nav-bureau" class="hover:text-pink">Le Bureau</button>
+                <button onclick="navigate('activites')" id="nav-activites" class="hover:text-pink">Activités</button>
+                <button onclick="navigate('about')" id="nav-about" class="hover:text-pink">Contact</button>
             </div>
         </div>
     </nav>
@@ -65,17 +67,17 @@
     <div id="detail-view">
         <div onclick="closeDetails()" class="back-btn"><i class="fas fa-arrow-left mr-2"></i> RETOUR</div>
         <div class="max-w-4xl mx-auto py-20 px-6 text-center">
-            <img id="det-img" src="" class="w-full rounded-3xl border-4 border-pink-500 shadow-2xl mb-10">
-            <h2 id="det-title" class="text-5xl font-black uppercase italic mb-6"></h2>
-            <p id="det-desc" class="text-xl text-gray-300 leading-relaxed italic"></p>
+            <img id="det-img" src="" class="w-full rounded-3xl border-4 border-white shadow-2xl mb-10">
+            <h2 id="det-title" class="text-5xl font-black uppercase italic mb-6 text-gray-900"></h2>
+            <p id="det-desc" class="text-xl text-gray-600 leading-relaxed"></p>
         </div>
     </div>
 
-    <main id="main-content"></main>
+    <main id="main-content" class="min-height-[80vh]"></main>
 
-    <footer class="py-10 text-center border-t border-pink-900 mt-20">
+    <footer class="py-10 text-center bg-pink-50 border-t border-pink-100 mt-20">
         <img src="1000537935.png" class="w-16 mx-auto mb-4 grayscale hover:grayscale-0 transition">
-        <p class="text-gray-500 text-[10px] tracking-[0.4em] uppercase">© 2026 UEA Universiapolis Agadir</p>
+        <p class="text-pink font-bold text-[10px] tracking-[0.4em] uppercase">© 2026 UEA Universiapolis Agadir</p>
     </footer>
 
     <script>
@@ -83,44 +85,56 @@
             halloween: {
                 title: "Movie Night Halloween",
                 img: "1000959451.jpg",
-                desc: "Une soirée terrifiante à la salle culturelle. 20DH l'entrée pour une ambiance unique, des films d'horreur et une communauté soudée."
+                desc: "Une soirée terrifiante regroupant 90+ étudiants. Au programme : films d'horreur, concours de déguisements et cohésion totale."
             },
             stargame: {
                 title: "All Star Game",
                 img: "1000959452.jpg",
-                desc: "Le tournoi de football officiel de l'UEA. Du 10 Mars au 17 Avril. L'excellence sportive au cœur de notre université."
+                desc: "Le sommet du sport à Universiapolis. 10 équipes, 120 joueurs. Vainqueur 2025 : Infinite FC."
+            },
+            lastdance: {
+                title: "The Last Dance 2",
+                img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", // Remplace par ton image si tu l'as
+                desc: "Soirée de fin d'année inoubliable avec plus de 320 participants. Une célébration de la culture et de la danse."
+            },
+            clasico: {
+                title: "Projection Clasico",
+                img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018", // Remplace par ton image
+                desc: "Diffusion en direct du match Real Madrid vs Barca. Une ambiance électrique partagée par toute la communauté."
+            },
+            uniculture: {
+                title: "Uni Culture 2026",
+                img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94", // Remplace par ton image
+                desc: "Événement phare de juin 2026. Célébration des produits du terroir, gastronomie et traditions de nos nations africaines."
             }
         };
 
         const pages = {
             accueil: `
-                <div class="py-32 px-6 text-center">
-                    <div class="w-40 h-40 mx-auto mb-10 pink-gradient rounded-full p-1 flex items-center justify-center">
-                        <img src="1000537935.png" class="w-full h-full rounded-full bg-white">
+                <div class="py-32 px-6 text-center bg-gradient-to-b from-pink-50 to-white">
+                    <div class="w-40 h-40 mx-auto mb-10 pink-gradient rounded-full p-1 shadow-xl">
+                        <img src="1000537935.png" class="w-full h-full rounded-full bg-white object-contain">
                     </div>
-                    <h1 class="text-6xl md:text-8xl font-black uppercase tracking-tighter italic leading-none">L'AVENIR EN <br><span class="text-pink">CONFIANCE</span></h1>
-                    <p class="mt-8 text-gray-400 max-w-xl mx-auto text-lg">L'Union des Étudiants Africains d'Universiapolis Agadir. Culture, Unité, Succès.</p>
-                    <button onclick="navigate('activites')" class="mt-12 pink-gradient px-12 py-4 rounded-full font-black uppercase tracking-widest hover:scale-110 transition">Découvrir les Activités</button>
+                    <h1 class="text-6xl md:text-8xl font-black uppercase tracking-tighter italic leading-none text-gray-900">L'AVENIR EN <br><span class="text-pink">CONFIANCE</span></h1>
+                    <p class="mt-8 text-gray-500 max-w-xl mx-auto text-lg font-medium">L'Union des Étudiants Africains d'Universiapolis Agadir. <br>Unité • Culture • Succès</p>
+                    <button onclick="navigate('activites')" class="mt-12 pink-gradient text-white px-12 py-4 rounded-full font-black uppercase tracking-widest shadow-lg hover:shadow-pink-200 transition">Voir nos réalisations</button>
                 </div>`,
 
             activites: `
                 <div class="max-w-6xl mx-auto py-20 px-6">
-                    <h2 class="text-5xl font-black italic uppercase mb-16 border-l-8 border-pink-500 pl-6">Réalisations</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div class="activity-container" onclick="showDetails('halloween')">
-                            <img src="1000959451.jpg" class="w-full h-[500px] object-cover">
-                            <div class="p-6 bg-black text-center">
-                                <h3 class="text-2xl font-bold uppercase italic">Movie Night Halloween</h3>
-                                <p class="text-pink text-xs font-black mt-2">CLIQUER POUR LES DÉTAILS</p>
+                    <h2 class="text-5xl font-black italic uppercase mb-16 border-l-8 border-pink-500 pl-6">Nos Activités</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        ${Object.keys(activities).map(key => `
+                            <div class="activity-container" onclick="showDetails('${key}')">
+                                <div class="h-64 overflow-hidden">
+                                    <img src="${activities[key].img}" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+                                </div>
+                                <div class="p-6 text-center">
+                                    <h3 class="text-xl font-black uppercase italic text-gray-900">${activities[key].title}</h3>
+                                    <p class="text-pink text-xs font-bold mt-2">DÉCOUVRIR <i class="fas fa-plus ml-1"></i></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="activity-container" onclick="showDetails('stargame')">
-                            <img src="1000959452.jpg" class="w-full h-[500px] object-cover">
-                            <div class="p-6 bg-black text-center">
-                                <h3 class="text-2xl font-bold uppercase italic">All Star Game</h3>
-                                <p class="text-pink text-xs font-black mt-2">CLIQUER POUR LES DÉTAILS</p>
-                            </div>
-                        </div>
+                        `).join('')}
                     </div>
                 </div>`,
 
@@ -142,23 +156,24 @@
 
             about: `
                 <div class="max-w-4xl mx-auto py-20 px-6 text-center">
-                    <h2 class="text-5xl font-black italic uppercase mb-10">Contact</h2>
-                    <div class="bg-zinc-900 p-10 rounded-3xl border border-pink-500">
-                        <p class="text-2xl mb-6 font-bold">ueauniversiapolis@gmail.com</p>
-                        <div class="flex justify-center space-x-6 text-4xl">
-                            <a href="https://wa.me/212781688850" class="text-green-500"><i class="fab fa-whatsapp"></i></a>
-                            <a href="https://www.instagram.com/ueauniversiapolis" class="text-pink"><i class="fab fa-instagram"></i></a>
+                    <h2 class="text-5xl font-black italic uppercase mb-10">Contactez-nous</h2>
+                    <div class="bg-white p-12 rounded-[40px] shadow-2xl border-2 border-pink-100">
+                        <p class="text-3xl mb-8 font-black text-gray-900">ueauniversiapolis@gmail.com</p>
+                        <div class="flex justify-center space-x-10">
+                            <a href="https://wa.me/212781688850" class="text-5xl text-green-500 hover:scale-110 transition"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.instagram.com/ueauniversiapolis" class="text-5xl text-pink hover:scale-110 transition"><i class="fab fa-instagram"></i></a>
                         </div>
+                        <p class="mt-10 text-gray-400 uppercase font-bold tracking-widest text-sm">Agadir, Maroc</p>
                     </div>
                 </div>`
         };
 
         function member(role, name, details) {
-            return `<div class="bg-zinc-900 p-8 rounded-3xl border border-zinc-800 hover:border-pink-500 transition">
-                <div class="w-24 h-24 bg-zinc-800 rounded-full mx-auto mb-4 border-2 border-pink-500 flex items-center justify-center text-gray-500"><i class="fas fa-user text-3xl"></i></div>
-                <h4 class="font-black text-xl uppercase tracking-tighter italic text-pink">${role}</h4>
-                <p class="text-white font-bold">${name}</p>
-                <p class="text-xs text-gray-500 uppercase mt-2">${details}</p>
+            return `<div class="bg-white p-8 rounded-3xl border border-pink-50 shadow-sm hover:shadow-md transition">
+                <div class="w-20 h-20 bg-pink-100 rounded-full mx-auto mb-4 flex items-center justify-center text-pink text-3xl"><i class="fas fa-user-tie"></i></div>
+                <h4 class="font-black text-lg uppercase italic text-pink">${role}</h4>
+                <p class="text-gray-900 font-bold text-xl">${name}</p>
+                <p class="text-xs text-gray-400 uppercase mt-2 font-bold">${details}</p>
             </div>`;
         }
 
