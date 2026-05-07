@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UEA Universiapolis | L'avenir en confiance</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { 
+            --primary: #000000; /* Noir */
+            --accent: #fbcfe8;  /* Rose clair du logo */
+            --pink-dark: #f472b6; /* Rose plus prononcé pour les boutons */
+            --white: #ffffff; 
+        }
+        
+        body { background-color: var(--white); min-height: 100vh; display: flex; flex-direction: column; font-family: 'Segoe UI', sans-serif; }
+        
+        /* Navigation Style */
+        .nav-active { color: var(--pink-dark) !important; border-bottom: 3px solid var(--pink-dark); }
+        
+        /* Bouton Rose "Club" */
+        .btn-pink {
+            background-color: var(--pink-dark);
+            color: white;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(244, 114, 182, 0.3);
+        }
+        .btn-pink:hover { transform: scale(1.05); background-color: #db2777; }
+
+        /* Overlay Détails */
+        #detail-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 2000; overflow-y: auto; padding: 20px;
+        }
+        .detail-content { max-width: 800px; margin: 40px auto; background: white; border-radius: 24px; overflow: hidden; border: 4px solid var(--pink-dark); }
+
+        .interactive-card { transition: 0.3s; border: 1px solid #f3f4f6; }
+        .interactive-card:hover { transform: translateY(-8px); border-color: var(--pink-dark); }
+    </style>
+</head>
+<body>
+
+    <nav class="bg-black text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-20">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigate('accueil')">
+                <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center overflow-hidden border-2 border-pink-300">
+                    <img src="1000537935.png" alt="Logo UEA" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <span class="font-bold text-xl block leading-none uppercase tracking-tighter">UEA</span>
+                    <span class="text-[9px] text-pink-300 uppercase tracking-widest font-bold">L'avenir en confiance</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 font-bold uppercase text-xs tracking-widest">
+                <button onclick="navigate('accueil')" id="nav-accueil" class="hover:text-pink-300 transition">Accueil</button>
+                <button onclick="navigate('bureau')" id="nav-bureau" class="hover:text-pink-300 transition">Bureau</button>
+                <button onclick="navigate('activites')" id="nav-activites" class="hover:text-pink-300 transition">Activités</button>
+                <button onclick="navigate('about')" id="nav-about" class="hover:text-pink-300 transition">Contact</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="detail-overlay">
+        <div class="detail-content">
+            <div class="w-full bg-gray-100 flex justify-center border-b-4 border-pink-100">
+                <img id="detail-img" src="" class="max-h-[550px] w-auto object-contain">
+            </div>
+            <div class="p-10">
+                <button class="bg-black text-white px-8 py-3 rounded-full font-bold mb-6 hover:bg-pink-600 transition uppercase text-xs tracking-widest" onclick="closeDetails()">
+                    <i class="fas fa-arrow-left mr-2"></i> Retour
+                </button>
+                <h2 id="detail-title" class="text-4xl font-black text-black mb-2 uppercase"></h2>
+                <div id="detail-date" class="inline-block bg-pink-100 text-pink-700 px-4 py-1 rounded-full text-xs font-black mb-6"></div>
+                <p id="detail-desc" class="text-gray-700 text-lg leading-relaxed border-l-4 border-pink-300 pl-6"></p>
+            </div>
+        </div>
+    </div>
+
+    <main id="content-area" class="flex-grow"></main>
+
+    <footer class="bg-black text-white py-14 text-center">
+        <div class="flex justify-center space-x-10 mb-8">
+            <a href="https://www.instagram.com/ueauniversiapolis" target="_blank" class="text-4xl hover:text-pink-400 transition"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/212781688850" target="_blank" class="text-4xl hover:text-green-400 transition"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="text-pink-200 text-sm font-bold uppercase tracking-[0.3em] mb-4">Union des Étudiants Africains</p>
+        <div class="h-px w-20 bg-pink-900 mx-auto mb-4"></div>
+        <p class="text-gray-500 text-[10px] uppercase tracking-widest">&copy; 2026 Universiapolis Agadir</p>
+    </footer>
+
+    <script>
+        const whatsappLink = "https://wa.me/212781688850";
+
+        // CONFIGURATION DES ACTIVITÉS
+        const activitiesData = {
+            halloween: { title: "Movie Night Halloween", date: "31 OCTOBRE", img: "1000959451.jpg", desc: "Une soirée terrifiante organisée par l'UEA. Diffusion de films, concours de costumes et ambiance unique à la Salle Culturelle." },
+            star_game: { title: "All Star Game", date: "MARS - AVRIL", img: "1000959452.jpg", desc: "Le tournoi de football légendaire d'Universiapolis. 120 joueurs, une seule équipe championne." },
+            dance: { title: "The Last Dance 2", date: "DÉCEMBRE", img: "https://via.placeholder.com/800x500/000000/f472b6?text=Last+Dance", desc: "Clôture de l'année en beauté avec plus de 320 étudiants réunis." }
+        };
+
+        const pages = {
+            accueil: `
+                <section class="relative h-[85vh] flex items-center justify-center text-center text-white">
+                    <div class="absolute inset-0 bg-black">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1500" class="w-full h-full object-cover opacity-30">
+                    </div>
+                    <div class="relative z-10 px-6">
+                        <img src="1000537935.png" class="w-32 h-32 mx-auto mb-8 drop-shadow-[0_0_15px_rgba(251,207,232,0.5)]">
+                        <h1 class="text-7xl font-black mb-4 tracking-tighter uppercase">L'AVENIR EN <br><span class="text-pink-400">CONFIANCE</span></h1>
+                        <p class="text-xl max-w-xl mx-auto font-light tracking-wide text-pink-100">L'Union des Étudiants Africains d'Universiapolis Agadir vous souhaite la bienvenue.</p>
+                        <div class="mt-10">
+                            <button onclick="navigate('activites')" class="btn-pink px-12 py-4 font-black uppercase text-sm tracking-widest">Explorer le Club</button>
+                        </div>
+                    </div>
+                </section>`,
+
+            bureau: `
+                <section class="py-20 px-6 max-w-7xl mx-auto">
+                    <h2 class="text-5xl font-black text-center mb-4 uppercase italic">Le <span class="text-pink-500">Bureau</span></h2>
+                    <p class="text-center text-gray-400 uppercase tracking-[0.5em] mb-16 text-xs">Exécutif 2025-2026</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        ${renderMember("Président", "Gilles IMMONGAULT", "Master Logistique")}
+                        ${renderMember("Vice-Présidente", "Chahd MECHINO", "2ème année Ingénierie")}
+                        ${renderMember("Secrétaire Général", "Coulibaly IBRAHIM", "2ème année Ingénierie")}
+                        ${renderMember("Porte Parole", "Dylane NGOMO", "3ème année Génie Alimentaire")}
+                        ${renderMember("Resp. Informatique", "Abdul Karim M.", "4ème année Génie Info")}
+                        ${renderMember("Resp. Communication", "Judes Paul MAYOMBO", "4ème année Génie Civil")}
+                        ${renderMember("Trésorier", "Yacine OUEDRAOGO", "4ème année Génie Civil")}
+                        ${renderMember("Responsable Sportif", "N'fally KONE", "3ème année Finance")}
+                        ${renderMember("Resp. Événementiel", "Dimitri DIPAMA", "4ème année Génie Info")}
+                    </div>
+                </section>`,
+
+            activites: `
+                <section class="py-20 px-6 max-w-7xl mx-auto">
+                    <h2 class="text-5xl font-black text-center mb-16 uppercase">Nos <span class="text-pink-500">Events</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="interactive-card bg-white rounded-3xl overflow-hidden cursor-pointer shadow-sm" onclick="openDetails('halloween')">
+                            <img src="1000959451.jpg" class="h-80 w-full object-cover">
+                            <div class="p-8 text-center"><h3 class="font-black text-xl uppercase tracking-tighter">Halloween Party</h3><p class="text-pink-500 font-bold text-xs mt-2">DÉCOUVRIR →</p></div>
+                        </div>
+                        <div class="interactive-card bg-white rounded-3xl overflow-hidden cursor-pointer shadow-sm" onclick="openDetails('star_game')">
+                            <img src="1000959452.jpg" class="h-80 w-full object-cover">
+                            <div class="p-8 text-center"><h3 class="font-black text-xl uppercase tracking-tighter">All Star Game</h3><p class="text-pink-500 font-bold text-xs mt-2">DÉCOUVRIR →</p></div>
+                        </div>
+                        <div class="interactive-card bg-white rounded-3xl overflow-hidden cursor-pointer shadow-sm" onclick="openDetails('dance')">
+                            <div class="h-80 bg-black flex items-center justify-center"><h3 class="text-white font-black text-2xl uppercase tracking-widest">Last Dance</h3></div>
+                            <div class="p-8 text-center"><h3 class="font-black text-xl uppercase tracking-tighter">The Last Dance 2</h3><p class="text-pink-500 font-bold text-xs mt-2">DÉCOUVRIR →</p></div>
+                        </div>
+                    </div>
+                </section>`,
+
+            about: `
+                <section class="py-20 px-6 max-w-6xl mx-auto">
+                    <div class="bg-black text-white rounded-[40px] shadow-2xl overflow-hidden flex flex-col md:flex-row border-t-8 border-pink-400">
+                        <div class="p-16 md:w-1/2 flex flex-col justify-center border-r border-gray-800">
+                            <h2 class="text-4xl font-black mb-10 uppercase tracking-tighter">Keep In <span class="text-pink-400">Touch</span></h2>
+                            <div class="space-y-8">
+                                <a href="https://wa.me/212781688850" target="_blank" class="flex items-center text-xl hover:text-pink-400 transition font-bold"><i class="fab fa-whatsapp mr-6 text-3xl text-pink-400"></i> WhatsApp UEA</a>
+                                <a href="https://www.instagram.com/ueauniversiapolis" target="_blank" class="flex items-center text-xl hover:text-pink-400 transition font-bold"><i class="fab fa-instagram mr-6 text-3xl text-pink-400"></i> Instagram</a>
+                                <a href="mailto:ueauniversiapolis@gmail.com" class="flex items-center text-xl hover:text-pink-400 transition font-bold"><i class="fas fa-envelope mr-6 text-3xl text-pink-400"></i> Email Officiel</a>
+                            </div>
+                        </div>
+                        <div class="p-16 md:w-1/2 bg-white text-black">
+                            <h2 class="text-4xl font-black mb-6 uppercase tracking-tighter">About Us</h2>
+                            <p class="text-gray-600 text-lg leading-relaxed italic border-l-4 border-pink-400 pl-6 mb-8">"Nous sommes une famille. L'UEA est là pour assurer que chaque étudiant africain se sente chez lui à Agadir."</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-pink-50 p-6 rounded-3xl text-center"><h4 class="font-black text-pink-600 text-3xl">320+</h4><p class="text-[10px] font-black uppercase text-gray-400">Membres</p></div>
+                                <div class="bg-pink-50 p-6 rounded-3xl text-center"><h4 class="font-black text-pink-600 text-3xl">10+</h4><p class="text-[10px] font-black uppercase text-gray-400">Nationalités</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>`
+        };
+
+        function renderMember(role, name, school) {
+            return `
+                <div class="bg-white rounded-3xl p-8 interactive-card text-center">
+                    <div class="relative inline-block mb-6">
+                        <img src="https://via.placeholder.com/150" class="mx-auto rounded-full w-32 h-32 object-cover border-4 border-pink-100 shadow-lg">
+                        <div class="absolute -bottom-2 -right-2 bg-black text-white p-2 rounded-full text-xs"><i class="fas fa-star text-pink-400"></i></div>
+                    </div>
+                    <h3 class="font-black text-xl text-black uppercase tracking-tighter">${role}</h3>
+                    <p class="text-pink-500 font-bold text-sm mt-1">${name}</p>
+                    <p class="text-[10px] text-gray-400 font-black uppercase mt-3 tracking-[0.2em]">${school}</p>
+                    <div class="mt-8">
+                        <a href="${whatsappLink}" target="_blank" class="bg-gray-100 text-black hover:bg-black hover:text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition shadow-sm">Contact</a>
+                    </div>
+                </div>`;
+        }
+
+        function navigate(pageId) {
+            document.getElementById('content-area').innerHTML = pages[pageId];
+            document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('nav-active'));
+            if(document.getElementById('nav-'+pageId)) document.getElementById('nav-'+pageId).classList.add('nav-active');
+            window.scrollTo(0,0);
+        }
+
+        function openDetails(actId) {
+            const d = activitiesData[actId];
+            document.getElementById('detail-img').src = d.img;
+            document.getElementById('detail-title').innerText = d.title;
+            document.getElementById('detail-date').innerText = d.date;
+            document.getElementById('detail-desc').innerText = d.desc;
+            document.getElementById('detail-overlay').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetails() {
+            document.getElementById('detail-overlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onload = () => navigate('accueil');
+    </script>
+</body>
+</html>
